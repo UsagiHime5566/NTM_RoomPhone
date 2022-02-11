@@ -15,9 +15,11 @@ MonoBehaviour:
   CategoryName: General
   DatabaseType: 2
   Names:
+  - Declaration
   - Game
   - Help
   - Home
   - InputName
+  - Staff
   - Title
   - Unnamed
