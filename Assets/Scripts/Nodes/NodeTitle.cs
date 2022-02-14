@@ -20,5 +20,7 @@ public class NodeTitle : NodeControlBase
     public override void OnHideTodo(){
         backgroundPlayer.Stop();
     }
-    // public override void OnHideFinTodo(){}
+    public override void OnHideFinTodo(){
+        backgroundPlayer.Stop();
+    }
 }

@@ -12,7 +12,11 @@ public class UIManager : HimeLib.SingletonMono<UIManager>
     {
         MasterCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-        
+
+    }
+
+    public static void NodeMessage(string message){
+        Doozy.Engine.GameEventMessage.SendEvent(message);
     }
 
 }
