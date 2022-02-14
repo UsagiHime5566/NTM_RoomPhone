@@ -17,13 +17,184 @@ MonoBehaviour:
     UserAgreesToHaveItInsideThePluginsFolder: 0
     GoogleLiveSyncIsUptoDate: 1
     mTerms:
-    - Term: Interface/Test
+    - Term: Interface/Declartion
       TermType: 0
       Description: 
       Languages:
-      - 123
-      - 123
-      - 123
+      - "\u8096\u50CF\u6388\u6B0A\u8072\u660E"
+      - "\u9854\u5199\u771F\u63B2\u8F09\u3078\u306E\u304A\u9858\u3044"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/DeclartionContent
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u5F71\u50CF\u50C5\u5728\u5C55\u89BD\u671F\u9593\u64AD\u653E\uFF0C\u5C55\u89BD\u7D50\u675F\u5F8C\u5F71\u50CF\u8CC7\u6599\u5C07\u5168\u6578\u92B7\u6BC0\u3002"
+      - "\u3044\u305F\u3060\u3044\u305F\u9854\u5199\u771F\u306F\u672C\u5C55\u89A7\u4F1A\u306E\u307F\u306B\u4F7F\u7528\u3055\u305B\u3066\u3044\u305F\u3060\u304D\u3001\n\u5C55\u89A7\u4F1A\u7D42\u4E86\u5F8C\u3001\u9069\u6B63\u306B\u5EC3\u68C4\u30FB\u6D88\u53BB\u3044\u305F\u3057\u307E\u3059\u3002"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/Aggress
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u540C\u610F"
+      - "\u540C\u610F"
+      - Agree
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/Disaggree
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u4E0D\u540C\u610F"
+      - "\u540C\u610F\u3057\u306A\u3044"
+      - Disagree
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/Cancel
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u53D6\u6D88"
+      - "\u524A\u9664"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/Back
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u8FD4\u56DE"
+      - "\u623B\u308B"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/ToStart
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u9EDE\u64CA\u958B\u59CB"
+      - "\u30B9\u30BF\u30FC\u30C8"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/EnterGame
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u9032\u5165\u5C55\u89BD\u5BA4"
+      - "\u5C55\u89A7\u4F1A\u306B\u53C2\u52A0\u3059\u308B"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/UserTip
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u4F7F\u7528\u8AAA\u660E"
+      - "\u4F7F\u3044\u65B9\u30AC\u30A4\u30C9"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/AboutStaff
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u95DC\u65BC\u5718\u968A"
+      - "\u30C1\u30FC\u30E0\u306B\u3064\u3044\u3066"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/TimeRemain
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u6642\u9593\u5012\u6578"
+      - "\u30AB\u30A6\u30F3\u30C8\u30C0\u30A6\u30F3\u30BF\u30A4\u30DE\u30FC"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/Uploading
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u4E0A\u50B3\u4E2D\u8ACB\u7A0D\u5F8C"
+      - "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u304C\u5B8C\u4E86\u3059\u308B\u307E\u3067\u304A\u5F85\u3061\u304F\u3060\u3055\u3044"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/RecordTip
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u8ACB\u5C07\u81C9\u90E8\u5C0D\u6E96\u756B\u9762\u4E2D\u7684\u683C\u7DDA\uFF0C\u4EE5\u4FBF\u6B63\u78BA\u9304\u88FD\u60A8\u7684\u8868\u60C5"
+      - "\u753B\u9762\u306B\u3042\u308B\u67A0\u306B\u5408\u308F\u305B\u3066\u3001\n\u81EA\u5206\u306E\u9854\u3092\u9BAE\u660E\u306B\u64AE\u5F71\u3057\u3066\u304F\u3060\u3055\u3044"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/Help_1
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u9996\u5148\u8F38\u5165\u59D3\u540D\uFF0C\u63A5\u8457\u9304\u88FD\u60A8\u7684\u81C9\u90E8\u5F71\u50CF\u5F8C\uFF0C\u5C31\u80FD\u9032\u5165\u7DDA\u4E0A\u5C55\u89BD\u5BA4\u3002"
+      - "\u307E\u305A\u540D\u524D\u3092\u5165\u529B\u3057\u3001\u81EA\u5206\u306E\u9854\u3092\u64AE\u5F71\u3057\u3001\n\u305D\u308C\u304B\u3089\u30AA\u30F3\u30E9\u30A4\u30F3\u5C55\u89A7\u4F1A\u306B\u53C2\u52A0\u3057\u307E\u3059\u3002"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/Help_2
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u5728\u5C55\u89BD\u5BA4\u4E2D\uFF0C\u53EF\u50B3\u9001\u8A0A\u606F\u8B93\u540C\u6642\u5728\u7DDA\u7684\u5176\u4ED6\u7528\u6236\u3001\u4EE5\u53CA\u5C55\u89BD\u73FE\u5834\u770B\u5230\uFF0C\n\u4E26\u4E14\u53EF\u65BC\u7DDA\u4E0A\u5C55\u89BD\u5BA4\u4E2D\u8490\u96C6\u8A5E\u53E5\uFF0C\u96C6\u6EFF\u5F8C\u53EF\u81F3\u5C55\u89BD\u73FE\u5834\u514C\u63DB\u5C0F\u734E\u54C1\u3002"
+      - "\u30ED\u30B0\u30A4\u30F3\u3057\u3066\u3044\u308B\u5404\u30E6\u30FC\u30B6\u30FC\u306B\u30E1\u30C3\u30BB\u30FC\u30B8\u3092\u9001\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002\n\u3055\u3089\u306B\u3001\u30AA\u30F3\u30E9\u30A4\u30F3\u3084\u30EA\u30A2\u30EB\u4F1A\u5834\u3067\u898B\u305F\u5358\u8A9E\u3084\u30D5\u30EC\u30FC\u30BA\u3092\u5168\u6570\u96C6\u3081\u3066\u5FDC\u52DF\u3059\u308B\u3068\u3001\n\u4F1A\u5834\u5185\u306B\u3066\u666F\u54C1\u3092\u30D7\u30EC\u30BC\u30F3\u30C8\u3057\u307E\u3059\u3002"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/AboutStaffContent
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u65B0\u5A92\u9AD4\u4E92\u52D5\u8A2D\u8A08\u5718\u968A\uFF0C\u4E3B\u8981\u64C5\u9577\u5404\u7A2E\u5275\u610F\u8A2D\u8A08\u3001\u7F8E\u8853\u3001\u904A\u6232\u3001\u4E92\u52D5\u3001\u7A0B\u5F0F\n\u96FB\u73A9\u3001\u5C55\u5F0F\uFF0C\u6587\u5316\u7814\u7A76\u3002\u662F\u4E00\u500B\u96C6\u7D50\u85DD\u8853\u5BB6\u8207\u5DE5\u7A0B\u5E2B\u7684\u5718\u968A\u3002"
+      - "\u30A2\u30FC\u30C6\u30A3\u30B9\u30C8\u3001\u30D7\u30ED\u30B0\u30E9\u30DE\u3068\u30A8\u30F3\u30B8\u30CB\u30A2\u304B\u3089\u69CB\u6210\u3055\u308C\u3001\n\u30A4\u30F3\u30BF\u30E9\u30AF\u30B7\u30E7\u30F3\u30C7\u30B6\u30A4\u30F3\u306E\u56E3\u4F53\u3067\u3059\u3002\n\u5275\u9020\u7684\u306A\u30A4\u30F3\u30BF\u30E9\u30AF\u30B7\u30E7\u30F3\u30C7\u30B6\u30A4\u30F3\u3001\u30B2\u30FC\u30E0\u5236\u4F5C\u3001\u30D7\u30ED\u30B0\u30E9\u30DF\u30F3\u30B0\u958B\u767A\u3001\u30A2\u30FC\u30C8\u5236\u4F5C\u3001\n\u30AB\u30EB\u30C1\u30E5\u30E9\u30EB\u30FB\u30B9\u30BF\u30C7\u30A3\u30FC\u30BA\u306A\u3069\u3092\u5F97\u610F\u3068\u3057\u3066\u3044\u307E\u3059\u3002"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/EnterName
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u8ACB\u8F38\u5165\u4F60\u7684\u540D\u5B57"
+      - "\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/History
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u6B77\u53F2\u5C0D\u8A71"
+      - "\u30C8\u30FC\u30AF\u5C65\u6B74"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/Collection
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u8490\u96C6\u518A"
+      - "\u30B3\u30EC\u30AF\u30B7\u30E7\u30F3"
+      - 
+      Flags: 000000
+      Languages_Touch: []
+    - Term: Interface/WaitInput
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u8F38\u5165\u804A\u5929\u8A0A\u606F"
+      - "\u30E1\u30C3\u30BB\u30FC\u30B8\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"
+      - 
       Flags: 000000
       Languages_Touch: []
     CaseInsensitiveTerms: 0
@@ -44,7 +215,7 @@ MonoBehaviour:
     Google_WebServiceURL: https://script.google.com/macros/s/AKfycbxe6Q2U9Z5SxHhAoiYebLX7qgM_pCwXkHYrNqfkmaTkKJBkvFs/exec
     Google_SpreadsheetKey: 15UkFBFcCLph8H1PuTbv4EGCB_vkRfJQSpR01ktOBq5Y
     Google_SpreadsheetName: "I2Loc \u570B\u7F8E\u9928APP"
-    Google_LastUpdatedVersion: 1644573118432
+    Google_LastUpdatedVersion: 1644762020554
     Google_Password: change_this
     GoogleUpdateFrequency: 3
     GoogleInEditorCheckFrequency: 2
