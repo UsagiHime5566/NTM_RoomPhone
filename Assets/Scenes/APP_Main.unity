@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 89007773}
   - component: {fileID: 89007772}
   m_Layer: 0
-  m_Name: Button - Unnamed
+  m_Name: Button - EnterGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4627,6 +4627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BTN_Disagree: {fileID: 1587005375}
+  BTN_zhTW: {fileID: 1656825935}
+  BTN_Japan: {fileID: 1934018906}
 --- !u!114 &245058587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43228,8 +43230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundPlayer: {fileID: 810402972}
-  BTN_zhTW: {fileID: 1656825935}
-  BTN_Japan: {fileID: 1934018906}
+  EnterGame: {fileID: 89007773}
 --- !u!114 &1945096013
 MonoBehaviour:
   m_ObjectHideFlags: 0
