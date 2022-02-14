@@ -793,6 +793,9 @@ namespace Doozy.Engine.UI
                 NotifySystemOfTriggeredBehavior(UIViewBehaviorType.Hide); //send the global events
             }
 
+            //Canvas.enabled = !DisableCanvasWhenHidden;                     //disable the canvas, if the option is enabled
+            GraphicRaycaster.enabled = !DisableGraphicRaycasterWhenHidden; //disable the graphic raycaster, if the option is enabled
+
             float startTime = Time.realtimeSinceStartup;
             if (!instantAction) //wait for the animation to finish
             {
@@ -828,7 +831,7 @@ namespace Doozy.Engine.UI
             if (VisibleViews.Contains(this)) VisibleViews.Remove(this);
 
             Canvas.enabled = !DisableCanvasWhenHidden;                     //disable the canvas, if the option is enabled
-            GraphicRaycaster.enabled = !DisableGraphicRaycasterWhenHidden; //disable the graphic raycaster, if the option is enabled
+            //GraphicRaycaster.enabled = !DisableGraphicRaycasterWhenHidden; //disable the graphic raycaster, if the option is enabled
             gameObject.SetActive(!DisableGameObjectWhenHidden);            //disable the Source the UIView is attached to, if the option is enabled
             m_hideCoroutine = null;                                        //clear the coroutine reference
             if (Settings.AutoDisableUIInteractions) EnableUIInteractions();

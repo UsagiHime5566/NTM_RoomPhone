@@ -14,7 +14,9 @@ public class NodeDeclaration : NodeControlBase
     }
 
     // public override void OnShowTodo(){}
-    // public override void OnShowFinTodo(){}
+    public override void OnShowFinTodo(){
+        
+    }
 
     // public override void OnHideTodo(){}
     // public override void OnHideFinTodo(){}

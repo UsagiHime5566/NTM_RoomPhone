@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class UIManager : HimeLib.SingletonMono<UIManager>
 {
     public RenderTexture mainRenderTexture;
+    public Canvas MasterCanvas;
+    public CanvasGroupExtend BackgroundCanvas;
     void Start()
     {
+        MasterCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
