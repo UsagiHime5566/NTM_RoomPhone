@@ -12,9 +12,16 @@ public class NodeHome : NodeControlBase
     public string nullName = "null";
     public string GoNew = "GoNew";
     public string GoGame = "GoGame";
+
+    public bool debugGame = false;
+
     void Start()
     {
         EnterGame.onClick.AddListener(ToEnterGame);
+
+        #if !UNITY_EDITOR
+        debugGame = false;
+        #endif
     }
 
     void ToEnterGame(){
@@ -22,7 +29,9 @@ public class NodeHome : NodeControlBase
 
         string username = SystemConfig.Instance.GetData<string>(SaveKeys.Username, nullName);
 
-        if(username == nullName){
+        if(username != nullName || debugGame){
+            UIManager.NodeMessage(GoGame);
+        } else {
             UIManager.NodeMessage(GoNew);
         }
     }

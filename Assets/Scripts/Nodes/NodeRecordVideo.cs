@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using TMPro;
 
 public class NodeRecordVideo : NodeControlBase
 {
@@ -15,6 +16,7 @@ public class NodeRecordVideo : NodeControlBase
     public Image IMG_RemainTime;
     public CanvasGroupExtend PL_Tip;
     public CanvasGroupExtend PL_Uploading;
+    public TextMeshProUGUI TXT_Progress;
 
     [Header(@"Settings"), Range(5f, 60f), Tooltip(@"Maximum duration that button can be pressed.")]
     public float maxDuration = 10f;
@@ -30,6 +32,8 @@ public class NodeRecordVideo : NodeControlBase
         BTN_StartRecord.onClick.AddListener(StartRecord);
         BTN_CancelUpload.onClick.AddListener(CancelUpload);
         BTN_Back.onClick.AddListener(StopRecord);
+
+        NetworkManager.instance.OnProgressUpdate += UpdateProgressText;
     }
 
     public void StartRecord()
@@ -82,10 +86,24 @@ public class NodeRecordVideo : NodeControlBase
 
     void StartUpload(){
         PL_Uploading.OpenSelf();
+        TXT_Progress.text = $"0%";
+        NetworkManager.instance.StartUploadMedia(OnUploadFinished);
     }
 
     public void CancelUpload(){
         UIReset();
+        NetworkManager.instance.AbortUploading();
+    }
+
+    void OnUploadFinished(){
+        UIManager.NodeMessage("Go");
+
+        Debug.Log("Upload finished!");
+    }
+
+    void UpdateProgressText(float progress){
+        float preview = Mathf.FloorToInt(progress * 100);
+        TXT_Progress.text = $"{preview} %";
     }
 
     private void OnApplicationPause(bool pauseStatus) {
