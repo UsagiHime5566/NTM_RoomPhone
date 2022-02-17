@@ -8,6 +8,10 @@ using TMPro;
 
 public class NpcObject : MonoBehaviour , IPointerDownHandler
 {
+    [Header("Data")]
+    public int bookIndex;
+
+    [Header("UI Control")]
     public SpriteRenderer spriteObject;
     public float spriteMoveY = 0.25f;
     public float spriteDuration = 0.7f;
@@ -45,6 +49,8 @@ public class NpcObject : MonoBehaviour , IPointerDownHandler
         
         isMessageShowing = true;
         await Task.Delay(MessageDelay);
+        if(this == null) return;
+        
         isMessageShowing = false;
 
         MessageObject.CloseSelf();

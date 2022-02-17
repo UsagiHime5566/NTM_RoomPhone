@@ -19,8 +19,33 @@ public class PunManager : MonoBehaviourPunCallbacks
     [SerializeField] private byte maxPlayersPerRoom = 255;
     public GameObject playerPrefab;
 
+    public float reconnectTime = 10;
+    public string msgOnline = "Online";
+    public string msgOffline = "Offline";
+
     // 遊戲版本的編碼, 可讓 Photon Server 做同款遊戲不同版本的區隔.
     string gameVersion = "1";
+
+
+    public System.Action<string> OnNetworkChanged;
+    bool isInGarentee = false;
+
+    public void GarenteeConnect(){
+        if(isInGarentee)
+            return;
+
+        StartCoroutine(GarenteeConnectWork());
+    }
+
+    IEnumerator GarenteeConnectWork(){
+        isInGarentee = true;
+        while(true){
+            if(!PhotonNetwork.IsConnected)
+                Connect();
+            
+            yield return new WaitForSeconds(reconnectTime);
+        }
+    }
 
     public void Connect()
     {
@@ -49,6 +74,7 @@ public class PunManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause)
     {
+        OnNetworkChanged?.Invoke(msgOffline);
         Debug.LogWarningFormat("PUN 呼叫 OnDisconnected() {0}.", cause);
     }
 
@@ -65,6 +91,7 @@ public class PunManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        
         Debug.Log("PUN 呼叫 OnJoinedRoom(), 已成功進入遊戲室中.");
 
         var obj = PhotonNetwork.Instantiate(this.playerPrefab.name,
@@ -74,7 +101,7 @@ public class PunManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.NickName = $"{i}";
 
-
+        OnNetworkChanged?.Invoke(msgOnline);
     }
 
     // 玩家離開遊戲室時, 把他帶回到遊戲場入口

@@ -1604,6 +1604,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 5866666020974897748}
   keyOfMove: IsMove
   moveSpeed: 1
+  playerName: 
 --- !u!114 &5200103792136257715
 MonoBehaviour:
   m_ObjectHideFlags: 0

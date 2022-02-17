@@ -13,6 +13,8 @@ public class NodeGame : NodeControlBase
     public Button BTN_History;
     public Button BTN_Book;
 
+    public TextMeshProUGUI TXT_NetStats;
+
 
     void Start()
     {
@@ -28,14 +30,22 @@ public class NodeGame : NodeControlBase
         });
 
         INP_Chat.onEndEdit.AddListener(onChatSend);
+
+        PunManager.instance.OnNetworkChanged += UpdateNetworkStats;
     }
 
     void onChatSend(string msg){
         
     }
 
+    void UpdateNetworkStats(string msg){
+        TXT_NetStats.text = msg;
+    }
+
     public override void OnShowTodo(){
         UIManager.instance.BackgroundCanvas.CloseSelf();
+
+        PunManager.instance.GarenteeConnect();
     }
 
     // public override void OnShowFinTodo(){}
