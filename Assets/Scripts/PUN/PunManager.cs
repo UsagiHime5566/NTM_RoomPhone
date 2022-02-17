@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PunManager : MonoBehaviourPunCallbacks
 {
@@ -50,6 +51,10 @@ public class PunManager : MonoBehaviourPunCallbacks
     public void Connect()
     {
         PhotonNetwork.NickName = PlayerManager.instance.playerName;
+
+        Hashtable hash = new Hashtable();
+        hash.Add("UUID", PlayerManager.instance.uuid);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 
         // 檢查是否與 Photon Cloud 連線
         if (PhotonNetwork.IsConnected)

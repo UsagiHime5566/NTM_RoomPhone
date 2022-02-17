@@ -68,12 +68,9 @@ public class NodeRecordVideo : NodeControlBase
         }
         
         // Stop recording
-        RecordManager.instance.recordHelper.StopRecording(normalEnd);
-
-        //Goto Upload
-        if(normalEnd){
+        RecordManager.instance.recordHelper.StopRecording(normalEnd, x => {
             StartUpload();
-        }
+        });
     }
 
     private void UIReset()

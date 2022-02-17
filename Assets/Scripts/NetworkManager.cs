@@ -8,87 +8,55 @@ public class NetworkManager : HimeLib.SingletonMono<NetworkManager>
 {
     [Header(@"API URL")]
     public string serverURL = "https://media.iottalktw.com";
-    public string api_getUploadAccess = "/api/getUploadAccess";
-    public string api_doUpload = "/api/upload";
-    public string api_getBoxList = "/api/getBoxList";
-    public string api_getMedia = "/api/media";
+    public string api_upload_Video = "/api/face/upload/video";
+    public string api_upload_Image = "/api/face/upload/image";
+    public string api_get_Video = "/api/face/video";
+    public string api_get_Image = "/api/face/image";
 
-
-    [Header(@"Runtimes")]
-    public string currentUUID;
-    public string uploadUUID;
-    public PoiBoxList Poi_Box;
 
     public System.Action<float> OnProgressUpdate;
-    public System.Action<string,double,double,string,string,string> OnNewPosUploaded;
     bool toAbort = false;
 
-    void Start()
-    {
-        currentUUID = System.Guid.NewGuid().ToString().Replace("-", "");
+    public void StartUploadImage(System.Action callback){
+        StartCoroutine(UploadImageProgress(callback));
     }
 
     public void StartUploadMedia(System.Action callback){
         StartCoroutine(UploadMediaProgress(callback));
     }
 
-    IEnumerator UploadMediaProgress(System.Action callback){
+    IEnumerator UploadImageProgress(System.Action callback){
 
-        DataUUID boxData = null;
-        string toUploadFileName = "";
+        string toUploadFileName = $"{PlayerManager.instance.uuid}.jpg";
 
-        //Step1. 取得當前位置座標
-        // Vector2 gps = OnlineMapsLocationService.instance.position;
-        // Debug.Log($"current gps : {gps}");
-
-        //Step2. 取得座標對應的uuid
-        // yield return HttpPostJSON(serverURL + api_getUploadAccess, GetLocationJSON(gps.y, gps.x), json => {
-        //     boxData = GetDataUUID(json);
-        //     toUploadFileName = $"{boxData.uuid}.mp4";
-        //     Debug.Log($"Get fileName: {toUploadFileName}");
-        // });
-
-        //Step3. 上傳檔案, 並取名uuid
+        //Step1. 上傳檔案
         toAbort = false;
-        yield return HttpPostFile(serverURL + api_doUpload, RecordManager.instance.FilePath, toUploadFileName);
-
-        //Step4. 上傳座標, 標題資訊至Google  => 地點名稱	座標 Lat	座標 Lon	標題	內文	media
-        //OnlineDataManager.instance.PostDataToSheet(boxData.uuid.Substring(0, 4), boxData.latitude.ToString(), boxData.longitude.ToString(), RecordManager.instance.ComingTitle, RecordManager.instance.ComingContent, toUploadFileName);
+        yield return HttpPostFile(serverURL + api_upload_Video, RecordManager.instance.ImageFilePath, toUploadFileName);
         
-        OnNewPosUploaded?.Invoke(boxData.uuid.Substring(0, 4), boxData.latitude, boxData.longitude, RecordManager.instance.ComingTitle, RecordManager.instance.ComingContent, toUploadFileName);
         callback?.Invoke();
     }
 
-    public void API_UploadAccess(double lat, double lon)
-    {
-        StartCoroutine(HttpPostJSON(serverURL + api_getUploadAccess, GetLocationJSON(lat, lon), json => {
-            DataUUID data = GetDataUUID(json);
-            uploadUUID = data.uuid;
-        }));
+    IEnumerator UploadMediaProgress(System.Action callback){
+
+        string toUploadFileName = $"{PlayerManager.instance.uuid}.mp4";
+
+        //Step1. 上傳檔案
+        toAbort = false;
+        yield return HttpPostFile(serverURL + api_upload_Video, RecordManager.instance.MediaFilePath, toUploadFileName);
+        
+        callback?.Invoke();
     }
 
-    public void API_UploadFile(string filePath, string fileID){
-        StartCoroutine(HttpPostFile(serverURL + api_doUpload, filePath, fileID));
+    public void API_Other_UploadFile(string filePath, string fileID){
+        StartCoroutine(HttpPostFile(serverURL + api_upload_Video, filePath, fileID));
     }
 
-    public void API_GetBoxList(double lat, double lon, System.Action<PoiBoxList> callback)
-    {
-        StartCoroutine(HttpPostJSON(serverURL + api_getBoxList, GetLocationUUIDJSON(lat, lon, currentUUID), json => {
-            try {
-                var fullJson = "{\"box\":" + json + "}";
-                PoiBoxList box = JsonUtility.FromJson<PoiBoxList>(fullJson);
-                Poi_Box = box;
-
-                callback?.Invoke(box);
-
-            } catch(System.Exception e){
-                Debug.Log(e.Message);
-            }
-        }));
+    public string API_GetImage(string fileID){
+        return serverURL + api_get_Image + "/" + fileID;
     }
 
-    public string API_GetFileUrl(string fileID){
-        return serverURL + api_getMedia + "/" + fileID;
+    public string API_GetMedia(string fileID){
+        return serverURL + api_get_Video + "/" + fileID;
     }
 
     public IEnumerator HttpPostJSON(string url, string json, System.Action<string> callback)
@@ -120,7 +88,7 @@ public class NetworkManager : HimeLib.SingletonMono<NetworkManager>
     public IEnumerator HttpPostFile(string url, string filePath, string fileName){
 
         if(string.IsNullOrEmpty(url) || string.IsNullOrEmpty(filePath) || string.IsNullOrEmpty(fileName)){
-            Debug.LogError("Post file param Error.");
+            Debug.LogError($"Post file param Error. {url} / {filePath} / {fileName}");
             yield break;
         }
         
@@ -148,62 +116,5 @@ public class NetworkManager : HimeLib.SingletonMono<NetworkManager>
 
     public void AbortUploading(){
         toAbort = true;
-    }
-
-    public string GetLocationJSON(double lat, double lon)
-    {
-        LocationJSON json = new LocationJSON() { latitude = lat, longitude = lon };
-        return JsonUtility.ToJson(json);
-    }
-
-    public string GetLocationUUIDJSON(double lat, double lon, string uuid)
-    {
-        LocationUUIDJSON json = new LocationUUIDJSON() { latitude = lat, longitude = lon, uid = uuid };
-        return JsonUtility.ToJson(json);
-    }
-
-    public DataUUID GetDataUUID(string json){
-        return JsonUtility.FromJson<DataUUID>(json);
-    }
-
-    [System.Serializable]
-    public class LocationJSON
-    {
-        public double latitude;
-        public double longitude;
-    }
-
-    [System.Serializable]
-    public class LocationUUIDJSON
-    {
-        public double latitude;
-        public double longitude;
-        public string uid;
-    }
-
-    [System.Serializable]
-    public class DataUUID
-    {
-        public string expire;
-        public double latitude;
-        public double longitude;
-        public string timestamp;
-        public string uuid;
-    }
-
-    [System.Serializable]
-    public class PoiBoxList
-    {
-        public List<PoiBox> box;
-    }
-
-    [System.Serializable]
-    public class PoiBox
-    {
-        public int id;
-        public double latitude;
-        public double longitude;
-        public string timestamp;
-        public string media_filename;
     }
 }

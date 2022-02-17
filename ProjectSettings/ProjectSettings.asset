@@ -171,8 +171,8 @@ PlayerSettings:
     Android: com.Artpower.NtmFaceRoom
     iPhone: com.Artpower.NtmFaceRoom
   buildNumber:
-    iPhone: 7
-  AndroidBundleVersionCode: 7
+    iPhone: 8
+  AndroidBundleVersionCode: 8
   AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1

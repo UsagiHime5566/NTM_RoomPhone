@@ -1,27 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 using DG.Tweening;
 using Photon.Pun;
+using UnityEngine.Networking;
+using System.IO;
 
 public class PlayerChar : MonoBehaviourPun
 {
     public Transform namePosition;
     public MeshRenderer HeadView;
+    public VideoPlayer videoPlayer;
+
+    [Header("Anim")]
     public Animator playerAnimator;
     public string keyOfMove = "IsMove";
     public float moveSpeed = 1;
 
+    [Header("Runtime")]
     public string playerName;
+    public string uuid;
     Tweener currentMove;
+
+    void Awake(){
+        videoPlayer.prepareCompleted += PrepareFinished;
+    }
+
+    public void PlayFace(){
+        string url = NetworkManager.instance.API_GetMedia($"{uuid}.mp4");
+        StartCoroutine(this.LoadVideoFromThisURL(url));
+        Debug.Log($"Start Play Video. {url}");
+    }
+
+    void PrepareFinished(VideoPlayer vp){
+        vp.Play();
+    }
 
     void Start()
     {
         gameObject.name = playerName = photonView.Owner.NickName;
+        uuid = (string)photonView.Owner.CustomProperties["UUID"];
         
         if(UINamePool.instance){
             UINamePool.instance.CreateName(playerName, namePosition);
         }
+
+        PlayFace();
 
         if(!photonView.IsMine)
             return;
@@ -60,5 +85,64 @@ public class PlayerChar : MonoBehaviourPun
             if(target != Vector3.zero)
                 MoveTo(target);
         }
+    }
+
+
+    private IEnumerator LoadVideoFromThisURL(string _url)
+    {
+        string _pathToFile = Path.Combine (PlayerManager.instance.PathFolder, $"{uuid}.mp4");
+
+        if(IsPathFileExist(_pathToFile)){
+            PrepareThisURLInVideo (_pathToFile);
+            yield break;
+        }
+
+        UnityWebRequest _videoRequest = UnityWebRequest.Get (_url);
+
+        var asyncOp = _videoRequest.SendWebRequest();
+
+        while(!asyncOp.isDone){
+            yield return null;
+        }
+
+        if (_videoRequest.isDone == false || _videoRequest.error != null)
+        {
+            Debug.Log ("Request = " + _videoRequest.error );
+        }
+
+        Debug.Log ("Video Done - " + _videoRequest.isDone);
+
+        byte[] _videoBytes = _videoRequest.downloadHandler.data;
+
+        File.WriteAllBytes (_pathToFile, _videoBytes);
+        Debug.Log (_pathToFile);
+
+        PrepareThisURLInVideo (_pathToFile);
+        yield return null;
+    }
+
+
+    void PrepareThisURLInVideo(string _url)
+    {
+        videoPlayer.source = UnityEngine.Video.VideoSource.Url;
+        videoPlayer.url = _url;
+        videoPlayer.Prepare();
+    }
+
+    bool IsPathFileExist(string path){
+        if (!Directory.Exists(Path.GetDirectoryName(path)))
+        {
+            Debug.LogWarning($"Directory does not exist : {path}, try to download.");
+            return false;
+        }
+
+        if (!File.Exists(path))
+        {
+            Debug.Log($"File does not exist : {path}, try to download.");
+            return false;
+        }
+
+        Debug.Log($"Read video from catch : {path}");
+        return true;
     }
 }

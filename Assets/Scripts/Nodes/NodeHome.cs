@@ -41,8 +41,6 @@ public class NodeHome : NodeControlBase
         }
     }
 
-
-
     public override void OnShowTodo(){
         backgroundPlayer.Play();
     }

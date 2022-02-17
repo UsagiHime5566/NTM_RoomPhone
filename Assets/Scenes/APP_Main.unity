@@ -20217,9 +20217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recordHelper: {fileID: 144833308}
-  ComingTitle: 
-  ComingContent: 
-  FilePath: 
+  ImageFilePath: 
+  MediaFilePath: 
 --- !u!114 &798824133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20233,14 +20232,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverURL: https://media.iottalktw.com
-  api_getUploadAccess: /api/getUploadAccess
-  api_doUpload: /api/upload
-  api_getBoxList: /api/getBoxList
-  api_getMedia: /api/media
-  currentUUID: 
-  uploadUUID: 
-  Poi_Box:
-    box: []
+  api_upload_Video: /api/face/upload/video
+  api_upload_Image: /api/face/upload/image
+  api_get_Video: /api/face/video
+  api_get_Image: /api/face/image
 --- !u!114 &798824134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43699,7 +43694,7 @@ MonoBehaviour:
   EnterGame: {fileID: 89007773}
   GoNew: GoNew
   GoGame: GoGame
-  debugGame: 1
+  debugGame: 0
   debugName: Usagi5566
 --- !u!114 &1945096013
 MonoBehaviour:

@@ -9,8 +9,6 @@ public class RecordManager : HimeLib.SingletonMono<RecordManager>
     public RecordHelper recordHelper;
 
     [Header(@"Uploading")]
-    public string ComingTitle;
-    public string ComingContent;
-    public string FilePath;
-    
+    public string ImageFilePath;
+    public string MediaFilePath;
 }

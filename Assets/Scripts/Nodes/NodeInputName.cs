@@ -18,10 +18,10 @@ public class NodeInputName : NodeControlBase
         if(string.IsNullOrEmpty(INP_UserName.text))
             return;
 
-        System.Guid myGUID = System.Guid.NewGuid();
+        string myGUID = System.Guid.NewGuid().ToString().Replace("-", "");
         Debug.Log($"generated id is : {myGUID}");
         
-        PlayerManager.instance.UpdatePlayerInfo(INP_UserName.text, myGUID.ToString());
+        PlayerManager.instance.UpdatePlayerInfo(INP_UserName.text, myGUID);
 
         UIManager.NodeMessage("Go");
     }

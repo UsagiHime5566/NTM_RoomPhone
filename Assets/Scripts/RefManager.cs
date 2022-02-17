@@ -91,19 +91,18 @@ public class RefManager : HimeLib.SingletonMono<RefManager>
         string about = csvTable[1][2];
         string contact = csvTable[1][3];
         string staff = csvTable[1][4];
-        string initPosition = csvTable[1][5];
-        string api_getUploadAccess = csvTable[1][6];
-        string api_doUpload = csvTable[1][7];
-        string api_getBoxList = csvTable[1][8];
-        string api_getMedia = csvTable[1][9];
+        string api_upload_video = csvTable[1][5];
+        string api_upload_image = csvTable[1][6];
+        string api_get_video = csvTable[1][7];
+        string api_get_image = csvTable[1][8];
 
 
         NetworkManager.instance.serverURL = serverUrl;
-        NetworkManager.instance.api_getUploadAccess = api_getUploadAccess;
-        NetworkManager.instance.api_doUpload = api_doUpload;
-        NetworkManager.instance.api_getBoxList = api_getBoxList;
-        NetworkManager.instance.api_getMedia = api_getMedia;
-        Debug.Log($"Use Server URL : {serverUrl} , with API: {api_getUploadAccess} , {api_doUpload} , {api_getBoxList} , {api_getMedia}");
+        NetworkManager.instance.api_upload_Video = api_upload_video;
+        NetworkManager.instance.api_upload_Image = api_upload_image;
+        NetworkManager.instance.api_get_Video = api_get_video;
+        NetworkManager.instance.api_get_Image = api_get_image;
+        Debug.Log($"Use Server URL : {serverUrl} , with API: {api_upload_video} , {api_upload_image} , {api_get_video} , {api_get_image}");
 
         //AboutMeLayout.instance.UpdateAboutMe(about_title, about_content);
         OnAppInfosDownloaded?.Invoke();

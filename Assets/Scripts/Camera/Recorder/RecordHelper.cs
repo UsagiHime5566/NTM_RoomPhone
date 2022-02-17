@@ -58,7 +58,7 @@ public class RecordHelper : MonoBehaviour
         microphoneSource.mute = audioInput == null;
     }
 
-    public async void StopRecording(bool shouldUpload)
+    public async void StopRecording(bool shouldUpload, System.Action<string> callback)
     {
         if(useDebug) return;
         
@@ -73,7 +73,9 @@ public class RecordHelper : MonoBehaviour
         Debug.Log($"Saved recording to: {path}");
 
         if(shouldUpload){
-            RecordManager.instance.FilePath = path;
+            RecordManager.instance.MediaFilePath = path;
+
+            callback?.Invoke(path);
         }
         
         //Handheld.PlayFullScreenMovie($"file://{path}");

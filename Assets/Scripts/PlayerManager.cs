@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayerManager : HimeLib.SingletonMono<PlayerManager>
@@ -7,17 +8,23 @@ public class PlayerManager : HimeLib.SingletonMono<PlayerManager>
     [Header("Game Const")]
     public int totalBookCount = 20;
     public string nullName = "[null]";
+    public string VideoFolder = "Videos";
+    public string PathFolder;
 
     [Header("Player Data")]
     public string playerName;
     public string uuid;
     public List<int> userGetsLyrics;
+
     void Start()
     {
         userGetsLyrics = SystemConfig.Instance.GetData<List<int>>(SaveKeys.UserBook, InitBook());
-
         playerName = SystemConfig.Instance.GetData<string>(SaveKeys.Username, nullName);
         uuid = SystemConfig.Instance.GetData<string>(SaveKeys.UUID, "[uid]");
+
+        PathFolder = Path.Combine (Application.persistentDataPath, VideoFolder);
+        if (!Directory.Exists(PathFolder))
+            Directory.CreateDirectory(PathFolder);
     }
 
     public bool IsNewUser(){
