@@ -32,11 +32,8 @@ public class NpcObject : MonoBehaviour , IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log($"{name} clicked!");
-
-        
-
         GetMessage();
+        PlayerManager.instance.GetNewLyric(bookIndex);
     }
 
     async void GetMessage(){
@@ -50,7 +47,7 @@ public class NpcObject : MonoBehaviour , IPointerDownHandler
         isMessageShowing = true;
         await Task.Delay(MessageDelay);
         if(this == null) return;
-        
+
         isMessageShowing = false;
 
         MessageObject.CloseSelf();

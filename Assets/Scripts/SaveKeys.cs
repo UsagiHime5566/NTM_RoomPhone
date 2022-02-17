@@ -5,4 +5,6 @@ using UnityEngine;
 public class SaveKeys
 {
     public static string Username = "UserName";
+
+    public static string UserBook = "UserBook";
 }
