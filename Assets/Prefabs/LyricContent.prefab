@@ -67,7 +67,7 @@ MonoBehaviour:
   m_text: "\u5B9D\u7269"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cabd238bd9ea534d8029638f866353e, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b53ffd49525e2d499b21d61c56b34b8, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: c92c9b7e68ab20c40a1c5871acb9134e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_text: ????????
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cabd238bd9ea534d8029638f866353e, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4b53ffd49525e2d499b21d61c56b34b8, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: c92c9b7e68ab20c40a1c5871acb9134e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

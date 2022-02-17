@@ -18,21 +18,16 @@ public class NodeInputName : NodeControlBase
         if(string.IsNullOrEmpty(INP_UserName.text))
             return;
 
-        //SystemConfig.Instance.SaveData(SaveKeys.Username, INP_UserName.text);
         System.Guid myGUID = System.Guid.NewGuid();
-        Debug.Log($"my id is : {myGUID}");
+        Debug.Log($"generated id is : {myGUID}");
+        
+        PlayerManager.instance.UpdatePlayerInfo(INP_UserName.text, myGUID.ToString());
 
         UIManager.NodeMessage("Go");
-
     }
 
-    public override void OnShowTodo(){
-        
-    }
+    //public override void OnShowTodo(){}
     //public override void OnShowFinTodo(){}
-
-    public override void OnHideTodo(){
-        
-    }
-    // public override void OnHideFinTodo(){}
+    //public override void OnHideTodo(){}
+    //public override void OnHideFinTodo(){}
 }

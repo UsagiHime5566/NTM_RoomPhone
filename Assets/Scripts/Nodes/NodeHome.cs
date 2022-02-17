@@ -9,11 +9,12 @@ public class NodeHome : NodeControlBase
 {
     public VideoPlayer backgroundPlayer;
     public Button EnterGame;
-    public string nullName = "null";
+    
     public string GoNew = "GoNew";
     public string GoGame = "GoGame";
 
     public bool debugGame = false;
+    public string debugName = "Usagi5566";
 
     void Start()
     {
@@ -27,9 +28,13 @@ public class NodeHome : NodeControlBase
     void ToEnterGame(){
         Debug.Log("EnterGame");
 
-        string username = SystemConfig.Instance.GetData<string>(SaveKeys.Username, nullName);
+        #if UNITY_EDITOR
+        if(debugGame){
+            PlayerManager.instance.playerName = debugName;
+        }
+        #endif
 
-        if(username != nullName || debugGame){
+        if(!PlayerManager.instance.IsNewUser() || debugGame){
             UIManager.NodeMessage(GoGame);
         } else {
             UIManager.NodeMessage(GoNew);

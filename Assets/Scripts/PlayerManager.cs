@@ -4,11 +4,32 @@ using UnityEngine;
 
 public class PlayerManager : HimeLib.SingletonMono<PlayerManager>
 {
+    [Header("Game Const")]
     public int totalBookCount = 20;
+    public string nullName = "[null]";
+
+    [Header("Player Data")]
+    public string playerName;
+    public string uuid;
     public List<int> userGetsLyrics;
     void Start()
     {
         userGetsLyrics = SystemConfig.Instance.GetData<List<int>>(SaveKeys.UserBook, InitBook());
+
+        playerName = SystemConfig.Instance.GetData<string>(SaveKeys.Username, nullName);
+        uuid = SystemConfig.Instance.GetData<string>(SaveKeys.UUID, "[uid]");
+    }
+
+    public bool IsNewUser(){
+        return playerName == nullName;
+    }
+
+    public void UpdatePlayerInfo(string n, string u){
+        playerName = n;
+        uuid = u;
+
+        SystemConfig.Instance.SaveData(SaveKeys.Username, playerName);
+        SystemConfig.Instance.SaveData(SaveKeys.UUID, uuid);
     }
 
     List<int> InitBook(){

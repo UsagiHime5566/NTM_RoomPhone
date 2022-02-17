@@ -5,29 +5,40 @@ using UnityEngine.UI;
 using Photon.Chat;
 using ExitGames.Client.Photon;
 using Photon.Pun;
+using TMPro;
 
 public class PunChatManager : MonoBehaviour, IChatClientListener
 {
-    public string userID;
+    public static PunChatManager instance;
     public string chatRoomName = "world";
+    public float reconnectTime = 15;
 
-    [Header("UI")]
-    public InputField INP_Name;
-    public Button BTN_Enter;
+    public System.Action<string> OnNewMessageComing;
 
-    public InputField INP_MessageArea;
-    public InputField INP_Send;
-    public Button BTN_Send;
-    public Text TXT_Status;
     ChatClient chatClient;
+    bool isInGarentee = false;
+
+    void Awake() => instance = this;
     void Start()
     {
-        
+        chatClient = new ChatClient(this);
+    }
 
+    public void GarenteeConnect(){
+        if(isInGarentee)
+            return;
 
-        BTN_Enter.onClick.AddListener(DoConnect);
+        StartCoroutine(GarenteeConnectWork());
+    }
 
-        BTN_Send.onClick.AddListener(SendMessagePUN);
+    IEnumerator GarenteeConnectWork(){
+        isInGarentee = true;
+        while(true){
+            if(chatClient == null || !chatClient.CanChat)
+                DoConnect();
+            
+            yield return new WaitForSeconds(reconnectTime);
+        }
     }
 
     void Update()
@@ -52,12 +63,14 @@ public class PunChatManager : MonoBehaviour, IChatClientListener
     }
 
     void DoConnect(){
-        chatClient = new ChatClient(this);
-        chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, PhotonNetwork.AppVersion, new AuthenticationValues(INP_Name.text));
+        chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, 
+        PhotonNetwork.AppVersion, new AuthenticationValues(PlayerManager.instance.playerName));
     }
 
-    public void SendMessagePUN(){
-        chatClient.PublishMessage(chatRoomName, INP_Send.text);
+    public void SendMessagePUN(string msg){
+
+        if(chatClient != null && chatClient.CanChat)
+            chatClient.PublishMessage(chatRoomName, msg);
     }
 
     public void DebugReturn(DebugLevel level, string message)
@@ -79,7 +92,7 @@ public class PunChatManager : MonoBehaviour, IChatClientListener
     public void OnChatStateChange(ChatState state)
     {
         //Debug.Log("OnChatStateChange");
-        TXT_Status.text = state.ToString();
+        //TXT_Status.text = state.ToString();
     }
 
     public void OnConnected()
@@ -98,7 +111,7 @@ public class PunChatManager : MonoBehaviour, IChatClientListener
     {
         for (int i = 0; i < senders.Length; i++)
         {
-            INP_MessageArea.text += senders[i] + ":" + messages[i] + "\n";
+            OnNewMessageComing?.Invoke($"{senders[i]} : {messages[i]}");
         }
     }
 
@@ -115,10 +128,10 @@ public class PunChatManager : MonoBehaviour, IChatClientListener
 
     public void OnSubscribed(string[] channels, bool[] results)
     {
-        foreach (var item in channels)
-        {
-            chatClient.PublishMessage(item, "joined");
-        }
+        // foreach (var item in channels)
+        // {
+        //     chatClient.PublishMessage(item, "joined");
+        // }
 
         Debug.Log("Connected !");
     }

@@ -6,5 +6,7 @@ public class SaveKeys
 {
     public static string Username = "UserName";
 
+    public static string UUID = "UUID";
+
     public static string UserBook = "UserBook";
 }

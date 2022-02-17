@@ -15,6 +15,7 @@ public class NodeGame : NodeControlBase
 
     public TextMeshProUGUI TXT_NetStats;
 
+    public HistoryControl historyControl;
     public BookControl bookControl;
 
 
@@ -38,7 +39,8 @@ public class NodeGame : NodeControlBase
     }
 
     void onChatSend(string msg){
-        
+        PunChatManager.instance.SendMessagePUN(msg);
+        INP_Chat.text = "";
     }
 
     void UpdateNetworkStats(string msg){
@@ -49,6 +51,8 @@ public class NodeGame : NodeControlBase
         UIManager.instance.BackgroundCanvas.CloseSelf();
 
         PunManager.instance.GarenteeConnect();
+        PunChatManager.instance.GarenteeConnect();
+
     }
 
     // public override void OnShowFinTodo(){}

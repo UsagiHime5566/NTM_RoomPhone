@@ -49,6 +49,8 @@ public class PunManager : MonoBehaviourPunCallbacks
 
     public void Connect()
     {
+        PhotonNetwork.NickName = PlayerManager.instance.playerName;
+
         // 檢查是否與 Photon Cloud 連線
         if (PhotonNetwork.IsConnected)
         {
@@ -96,10 +98,6 @@ public class PunManager : MonoBehaviourPunCallbacks
 
         var obj = PhotonNetwork.Instantiate(this.playerPrefab.name,
         new Vector3(0f, 0f, 1.5f), Quaternion.identity, 0);
-
-        int i = Random.Range(0, 100);
-
-        PhotonNetwork.NickName = $"{i}";
 
         OnNetworkChanged?.Invoke(msgOnline);
     }
