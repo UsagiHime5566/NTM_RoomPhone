@@ -15,6 +15,8 @@ public class NodeGame : NodeControlBase
 
     public TextMeshProUGUI TXT_NetStats;
 
+    public BookControl bookControl;
+
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class NodeGame : NodeControlBase
 
         BTN_Book.onClick.AddListener(() => {
             PL_Book.OpenSelf();
+            bookControl.RefreshBook();
         });
 
         INP_Chat.onEndEdit.AddListener(onChatSend);

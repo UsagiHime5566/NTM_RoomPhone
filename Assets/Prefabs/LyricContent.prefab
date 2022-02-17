@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text New Text New Text New
+  m_text: "\u5B9D\u7269"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cabd238bd9ea534d8029638f866353e, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 4b53ffd49525e2d499b21d61c56b34b8, type: 2}
@@ -224,6 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TXT_Unlock: {fileID: 717722868253554132}
   TXT_Content: {fileID: 717722866671833285}
+  ContentIndex: 0
 --- !u!1 &717722868253554134
 GameObject:
   m_ObjectHideFlags: 0

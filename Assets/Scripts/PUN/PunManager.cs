@@ -95,7 +95,7 @@ public class PunManager : MonoBehaviourPunCallbacks
         Debug.Log("PUN 呼叫 OnJoinedRoom(), 已成功進入遊戲室中.");
 
         var obj = PhotonNetwork.Instantiate(this.playerPrefab.name,
-        new Vector3(0f, 0f, 5f), Quaternion.identity, 0);
+        new Vector3(0f, 0f, 1.5f), Quaternion.identity, 0);
 
         int i = Random.Range(0, 100);
 

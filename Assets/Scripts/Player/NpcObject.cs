@@ -25,9 +25,15 @@ public class NpcObject : MonoBehaviour , IPointerDownHandler
     bool isMessageShowing = false;
 
     void Start(){
+        RefManager.instance.OnLyricsDownloaded += LyricUpdate;
+
         spriteObject.transform.DOLocalMoveY(-spriteMoveY, spriteDuration).SetLoops(-1, LoopType.Yoyo);
         
         MessageObject.CloseSelfImmediate();
+    }
+
+    void LyricUpdate(List<string> lyric){
+        TXT_Message.text = lyric[bookIndex];
     }
 
     public void OnPointerDown(PointerEventData eventData)

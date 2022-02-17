@@ -17,10 +17,12 @@ public class NodeDeclaration : NodeControlBase
 
         BTN_zhTW.onClick.AddListener(() => {
             LocalizationManager.CurrentLanguage = "Chinese (Traditional)";
+            RefManager.instance.UseLyric = 0;
         });
 
         BTN_Japan.onClick.AddListener(() => {
             LocalizationManager.CurrentLanguage = "Japanese";
+            RefManager.instance.UseLyric = 1;
         });
     }
 

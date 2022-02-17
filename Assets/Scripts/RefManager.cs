@@ -9,10 +9,37 @@ using UnityEngine.Networking;
 public class RefManager : HimeLib.SingletonMono<RefManager>
 {
     public Action OnAppInfosDownloaded;
+    public Action<List<string>> OnLyricsDownloaded;
 
     public string webService;
     public string sheetID;
     public string Infos_PageID;
+
+
+    public int UseLyric { get => useLyric; set {
+        useLyric = value;
+        LyricInvoke();
+    }}
+
+    public List<string> lyric_zhtw;
+    public List<string> lyric_ja;
+    int useLyric = 0;
+
+    void LyricInvoke(){
+        if(useLyric == 0)
+            OnLyricsDownloaded?.Invoke(lyric_zhtw);
+        if(useLyric == 1)
+            OnLyricsDownloaded?.Invoke(lyric_ja);
+    }
+
+    // [ContextMenu("Hit")]
+    // void SetContentA(){
+    //     for (int i = 0; i < 20; i++)
+    //     {
+    //         lyric_zhtw.Add($"展覽寶物_{i+1}");
+    //         lyric_ja.Add($"宝物_{i+1}");
+    //     }
+    // }
 
     IEnumerator Start()
     {
