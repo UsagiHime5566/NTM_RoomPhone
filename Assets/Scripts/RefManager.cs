@@ -14,6 +14,7 @@ public class RefManager : HimeLib.SingletonMono<RefManager>
     public string webService;
     public string sheetID;
     public string Infos_PageID;
+    public string Lyric_pageID;
 
 
     public int UseLyric { get => useLyric; set {
@@ -47,9 +48,32 @@ public class RefManager : HimeLib.SingletonMono<RefManager>
         //     yield return null;
         // }
 
-        yield return null;
+        DownloadManager.GoogleGetCSV(ImportPOIData, webService, sheetID, Lyric_pageID);
+
+        yield return new WaitForSeconds(2.0f);
 
         DownloadManager.GoogleGetCSV(GetInfos, webService, sheetID, Infos_PageID);
+    }
+
+    public void ImportPOIData(string csvFile)
+    {
+        //讀入 CSV 檔案，使其分為 string 二維陣列
+        CsvParser csvParser = new CsvParser();
+        string[][] csvTable = csvParser.Parse(csvFile);
+
+        lyric_zhtw = new List<string>();
+        lyric_ja = new List<string>();
+        for (int i = 1; i < csvTable.Length; i++)
+        {
+            string index = csvTable[i][(int)CSVIndex.INDEX];
+            string zh = csvTable[i][(int)CSVIndex.ZHTW];
+            string ja = csvTable[i][(int)CSVIndex.JA];
+
+            lyric_zhtw.Add(zh);
+            lyric_ja.Add(ja);
+        }
+
+        LyricInvoke();
     }
 
     public void GetInfos(string csvFile){
@@ -105,5 +129,12 @@ public class RefManager : HimeLib.SingletonMono<RefManager>
         }
 
         Debug.Log("Network access success.");
+    }
+
+    public enum CSVIndex
+    {
+        INDEX = 0,
+        ZHTW = 1,
+        JA = 2,
     }
 }

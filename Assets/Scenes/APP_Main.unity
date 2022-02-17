@@ -20255,6 +20255,7 @@ MonoBehaviour:
   webService: https://script.google.com/macros/s/AKfycbzqeN5IrvPRqTXB-WjI7PrldsJFW1nK9fmobQcSxfd_LkrWZYcx/exec
   sheetID: 1qfiB-u9f5O-FMVHoCMTZ9gIDwbi5-NNWGGfRBjQE9ak
   Infos_PageID: 755092429
+  Lyric_pageID: 0
   lyric_zhtw:
   - "\u5C55\u89BD\u5BF6\u7269_1"
   - "\u5C55\u89BD\u5BF6\u7269_2"
