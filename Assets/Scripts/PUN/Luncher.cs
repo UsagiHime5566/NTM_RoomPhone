@@ -7,7 +7,9 @@ using Photon.Realtime;
 public class Luncher : MonoBehaviourPunCallbacks
 {
     [Tooltip("遊戲室玩家人數上限. 當遊戲室玩家人數已滿額, 新玩家只能新開遊戲室來進行遊戲.")]
-    [SerializeField] private byte maxPlayersPerRoom = 4;
+    [SerializeField] private byte maxPlayersPerRoom = 10;
+
+    public GameObject playerPrefab;
 
 
     // 遊戲版本的編碼, 可讓 Photon Server 做同款遊戲不同版本的區隔.
@@ -69,5 +71,14 @@ public class Luncher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("PUN 呼叫 OnJoinedRoom(), 已成功進入遊戲室中.");
+
+        var obj = PhotonNetwork.Instantiate(this.playerPrefab.name,
+        new Vector3(0f, 0f, 5f), Quaternion.identity, 0);
+
+        int i = Random.Range(0, 100);
+
+        PhotonNetwork.NickName = $"{i}";
+
+
     }
 }

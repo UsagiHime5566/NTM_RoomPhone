@@ -170,9 +170,10 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.Artpower.NtmFaceRoom
     iPhone: com.Artpower.NtmFaceRoom
-  buildNumber: {}
-  AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 21
+  buildNumber:
+    iPhone: 6
+  AndroidBundleVersionCode: 6
+  AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -265,7 +266,14 @@ PlayerSettings:
   androidGamepadSupportLevel: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 3e19ad8313f65214184a80dbcb4523c3, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
