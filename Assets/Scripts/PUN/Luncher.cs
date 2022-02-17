@@ -24,6 +24,9 @@ public class Luncher : MonoBehaviourPunCallbacks
     void Start()
     {
         //Connect();
+
+        int i = Random.Range(0, 100);
+        PhotonNetwork.NickName = $"Gi joe {i}";
     }
 
     // 與 Photon Cloud 連線
@@ -74,11 +77,5 @@ public class Luncher : MonoBehaviourPunCallbacks
 
         var obj = PhotonNetwork.Instantiate(this.playerPrefab.name,
         new Vector3(0f, 0f, 5f), Quaternion.identity, 0);
-
-        int i = Random.Range(0, 100);
-
-        PhotonNetwork.NickName = $"{i}";
-
-
     }
 }

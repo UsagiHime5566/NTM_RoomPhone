@@ -6,6 +6,7 @@ using Photon.Pun;
 
 public class PlayerChar : MonoBehaviourPun
 {
+    public Transform namePosition;
     public MeshRenderer HeadView;
     public Animator playerAnimator;
     public string keyOfMove = "IsMove";
@@ -16,6 +17,12 @@ public class PlayerChar : MonoBehaviourPun
 
     void Start()
     {
+        gameObject.name = playerName = photonView.Owner.NickName;
+        
+        if(UINamePool.instance){
+            UINamePool.instance.CreateName(playerName, namePosition);
+        }
+
         if(!photonView.IsMine)
             return;
 
