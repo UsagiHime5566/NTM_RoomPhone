@@ -54,7 +54,8 @@ public class PlayerChar : MonoBehaviourPun
             UINamePool.instance.CreateName(playerName, namePosition);
         }
 
-        PlayFace();
+        if(NetworkManager.instance)
+            PlayFace();
 
         if(!photonView.IsMine)
             return;
