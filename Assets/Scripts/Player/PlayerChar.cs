@@ -10,7 +10,7 @@ using System.IO;
 public class PlayerChar : MonoBehaviourPun
 {
     public Transform namePosition;
-    public MeshRenderer HeadView;
+    public MeshRenderer [] HeadView;
     public VideoPlayer videoPlayer;
 
     [Header("Anim")]
@@ -22,6 +22,8 @@ public class PlayerChar : MonoBehaviourPun
     public string playerName;
     public string uuid;
     Tweener currentMove;
+
+    RenderTexture rt;
 
     void Awake(){
         videoPlayer.prepareCompleted += PrepareFinished;
@@ -35,6 +37,12 @@ public class PlayerChar : MonoBehaviourPun
 
     void PrepareFinished(VideoPlayer vp){
         vp.Play();
+    }
+
+    async void SetTexture(){
+        await System.Threading.Tasks.Task.Delay(5000);
+        
+        Debug.Log("assign tex");
     }
 
     void Start()
@@ -107,15 +115,17 @@ public class PlayerChar : MonoBehaviourPun
 
         if (_videoRequest.isDone == false || _videoRequest.error != null)
         {
-            Debug.Log ("Request = " + _videoRequest.error );
+            Debug.Log ("Request >> " + _videoRequest.error );
+            yield break;
         }
 
-        Debug.Log ("Video Done - " + _videoRequest.isDone);
+        Debug.Log ("Video Done >> " + _videoRequest.isDone);
 
         byte[] _videoBytes = _videoRequest.downloadHandler.data;
 
         File.WriteAllBytes (_pathToFile, _videoBytes);
-        Debug.Log (_pathToFile);
+        
+        Debug.Log ($"Save video to {_pathToFile}");
 
         PrepareThisURLInVideo (_pathToFile);
         yield return null;
@@ -127,6 +137,14 @@ public class PlayerChar : MonoBehaviourPun
         videoPlayer.source = UnityEngine.Video.VideoSource.Url;
         videoPlayer.url = _url;
         videoPlayer.Prepare();
+
+        RenderTexture rt = new RenderTexture(216, 384, 0);
+        videoPlayer.targetTexture = rt;
+
+        HeadView[0].material.mainTexture = rt;
+        HeadView[1].material.mainTexture = rt;
+        HeadView[2].material.mainTexture = rt;
+        HeadView[3].material.mainTexture = rt;
     }
 
     bool IsPathFileExist(string path){

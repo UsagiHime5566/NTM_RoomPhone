@@ -39,6 +39,9 @@ public class NodeGame : NodeControlBase
     }
 
     void onChatSend(string msg){
+        if(string.IsNullOrEmpty(msg))
+            return;
+            
         PunChatManager.instance.SendMessagePUN(msg);
         INP_Chat.text = "";
     }

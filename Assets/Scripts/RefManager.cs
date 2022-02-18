@@ -15,6 +15,7 @@ public class RefManager : HimeLib.SingletonMono<RefManager>
     public string sheetID;
     public string Infos_PageID;
     public string Lyric_pageID;
+    public string Post_pageID;
 
 
     public int UseLyric { get => useLyric; set {
@@ -47,6 +48,8 @@ public class RefManager : HimeLib.SingletonMono<RefManager>
         // while(CheckIntenetConnection.instance.InternetStats == false){
         //     yield return null;
         // }
+
+        PunChatManager.instance.OnNewMessageComing += PostMessageToGoogle;
 
         DownloadManager.GoogleGetCSV(ImportPOIData, webService, sheetID, Lyric_pageID);
 
@@ -128,6 +131,11 @@ public class RefManager : HimeLib.SingletonMono<RefManager>
         }
 
         Debug.Log("Network access success.");
+    }
+
+
+    void PostMessageToGoogle(string msg){
+        DownloadManager.GoogleWriteLastLine(webService, sheetID, Post_pageID, DateTime.Now.ToString(), msg);
     }
 
     public enum CSVIndex

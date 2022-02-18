@@ -7,9 +7,10 @@ using System;
 
 public class DownloadManager
 {
-    const string requestPageCSV = "GetRawCSV";          //input: SheetID, PageID , return: pageCSV
-    const string requestPageName = "GetSheetName";      //input: SheetID, PageID , return: pageName
-    const string requestPagesInfos = "GetPagesInfo";    //input: SheetID ,         return: pageNames, pageIDs
+    const string requestPageCSV = "GetRawCSV";              //input: SheetID, PageID , return: pageCSV
+    const string requestPageName = "GetSheetName";          //input: SheetID, PageID , return: pageName
+    const string requestPagesInfos = "GetPagesInfo";        //input: SheetID,          return: pageNames, pageIDs
+    const string requestWriteLastLine = "WriteLastLine";    //input: SheetID, PageID , params
 
     string webServiceURL;
     string spreadsheetId;
@@ -19,6 +20,8 @@ public class DownloadManager
 
     string webAction;
     Action<string> mCallback;
+
+    string [] extraData;
 
     /// <summary>
     /// 以HTTP GET 方式連接EA設計的 Google App Scripts
@@ -40,6 +43,10 @@ public class DownloadManager
         GoogleSheetConnect(callback, service, ssid, "dummy", 0, 0, requestPagesInfos);
     }
 
+    public static void GoogleWriteLastLine(string service, string ssid, string gid, params string[] data){
+        GoogleSheetWrite(null, service, ssid, gid, requestWriteLastLine, data);
+    }
+
     public static void GoogleSheetConnect(Action<string> callback, string service, string ssid, string gid, int row = 0, int column = 0, string action = requestPageCSV){
         DownloadManager instance = new DownloadManager();
 
@@ -50,6 +57,18 @@ public class DownloadManager
         instance.mColumn = column;
         instance.webAction = action;
         instance.mCallback = callback;
+        instance.Start();
+    }
+
+    public static void GoogleSheetWrite(Action<string> callback, string service, string ssid, string gid, string action = requestPageCSV, params string[] data){
+        DownloadManager instance = new DownloadManager();
+
+        instance.webServiceURL = service;
+        instance.spreadsheetId = ssid;
+        instance.sheet_gid = gid;
+        instance.webAction = action;
+        instance.mCallback = callback;
+        instance.extraData = data;
         instance.Start();
     }
 
@@ -136,6 +155,14 @@ public class DownloadManager
         if(mRow > 0 && mColumn > 0)
             query += string.Format("&row={0}&column={1}", mRow, mColumn);
 
+        if(extraData != null && extraData.Length > 0){
+            foreach (string item in extraData)
+            {
+                query += $"&exa={item}";
+            }
+        }
+
+        Debug.Log("try : " + query);
         UnityWebRequest www = UnityWebRequest.Get(query);
 
 #if UNITY_2017_2_OR_NEWER
