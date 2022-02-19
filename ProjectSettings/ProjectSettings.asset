@@ -171,8 +171,8 @@ PlayerSettings:
     Android: com.Artpower.NtmFaceRoom
     iPhone: com.Artpower.NtmFaceRoom
   buildNumber:
-    iPhone: 15
-  AndroidBundleVersionCode: 15
+    iPhone: 16
+  AndroidBundleVersionCode: 16
   AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 30
   AndroidPreferredInstallLocation: 1
@@ -230,7 +230,7 @@ PlayerSettings:
   iOSDeviceRequirements: []
   iOSURLSchemes: []
   iOSBackgroundModes: 0
-  iOSMetalForceHardShadows: 0
+  iOSMetalForceHardShadows: 1
   metalEditorSupport: 1
   metalAPIValidation: 1
   iOSRenderExtraFrameOnPause: 0
