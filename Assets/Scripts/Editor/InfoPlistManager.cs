@@ -21,12 +21,12 @@ public class InfoPlistManager : MonoBehaviour
 
         // Update value
         PlistElementDict rootDict = plist.root;
-        rootDict.SetString("NSPhotoLibraryUsageDescription", "開啟後，此APP可以將目前的畫面保存到你的相簿之中");
-	    rootDict.SetString("NSPhotoLibraryAddUsageDescription", "開啟後，此APP可以將目前的畫面保存到你的相簿之中");
+        rootDict.SetString("NSPhotoLibraryUsageDescription", "該APP會將其他線上使用者的頭像資源暫存至儲存裝置中，以避免再次下載相同資源");
+	    rootDict.SetString("NSPhotoLibraryAddUsageDescription", "該APP會將其他線上使用者的頭像資源暫存至儲存裝置中，以避免再次下載相同資源");
         //rootDict.SetString("NSLocationAlwaysAndWhenInUseUsageDescription", "開啟後，APP中的地圖將定位您的位置，並引導您至此APP中的AR觀看點");
         //rootDict.SetString("NSLocationWhenInUseUsageDescription", "開啟後，APP中的地圖將定位您的位置，並引導您至此APP中的AR觀看點");
-        rootDict.SetString("NSCameraUsageDescription", "開啟後，您才能於APP中正常使用相機錄製影片。");
-        rootDict.SetString("NSMicrophoneUsageDescription", "開啟後，能夠在APP中同時錄製聲音。");
+        rootDict.SetString("NSCameraUsageDescription", "該APP初次使用時，會錄製您的個人影片，以此來客製化您的虛擬角色");
+        rootDict.SetString("NSMicrophoneUsageDescription", "該APP初次使用時，會錄製您的聲音，以此來客製化您的虛擬角色");
         
         var rootDicVal = rootDict.values;
         rootDicVal.Remove("UIApplicationExitsOnSuspend");
