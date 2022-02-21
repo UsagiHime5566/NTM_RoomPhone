@@ -142,10 +142,10 @@ public class PlayerChar : MonoBehaviourPun
         RenderTexture rt = new RenderTexture(216, 384, 0);
         videoPlayer.targetTexture = rt;
 
-        HeadView[0].material.mainTexture = rt;
-        HeadView[1].material.mainTexture = rt;
-        HeadView[2].material.mainTexture = rt;
-        HeadView[3].material.mainTexture = rt;
+        foreach (var item in HeadView)
+        {
+            item.material.mainTexture = rt;
+        }
     }
 
     bool IsPathFileExist(string path){
